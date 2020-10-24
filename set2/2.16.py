@@ -4,10 +4,10 @@ def replace_GvR(line):
     if not isinstance(line, str):
         raise TypeError("Invalid parameter!")
     line = line.split()
-    result_string = ""
+    prepare_result_string = []
     for word in line:
-        result_string += word.replace("GvR", "Guido van Rossum") + " "
-    return result_string[:len(result_string)-1]
+        prepare_result_string.append(word.replace("GvR", "Guido van Rossum"))
+    return " ".join(prepare_result_string)
 
 class TestReplaceGvR(unittest.TestCase):
     def test_upper_GVR(self):
