@@ -20,6 +20,10 @@ class WordsFromFirstAndLastLetters(unittest.TestCase):
         Mauris faucibus volutpat dictum"""
         self.assertEqual(first_and_last_letters_in_line(line), ("LIM", "tam"))
 
+    def test_incorrect_input(self):
+        with self.assertRaises(Exception):
+            first_and_last_letters_in_line(5)
+
 
 if __name__ == "__main__":
     unittest.main()
