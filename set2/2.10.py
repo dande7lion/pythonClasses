@@ -2,7 +2,7 @@ import unittest
 
 def number_of_words(line):
     if not isinstance(line, str):
-        raise Exception ("Invalid parameter!")
+        raise TypeError ("Invalid parameter!")
     words = line.split()
     return(len(words))
 
@@ -20,7 +20,7 @@ class TestNumberOfWords(unittest.TestCase):
 
     def test_incorrect_line(self):
         line = 5
-        with self.assertRaises(Exception):
+        with self.assertRaises(TypeError):
             number_of_words(line)
 
 
