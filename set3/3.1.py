@@ -5,7 +5,7 @@ if (x > y):
 else:
     result = y;
 
-# This code will probably work properly, but in python we do not use semicolon (;) at the end of statement.
+# This code will work properly, but in python we do not have to use semicolon (;) at the end of statement.
 
 ##########################
 
