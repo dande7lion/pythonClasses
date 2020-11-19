@@ -24,7 +24,7 @@ class Point:
 
     # obsługa point1 != point2
     def __ne__(self, other):        
-        return not self.x == other.x and self.y == other.y
+        return not self.__eq__(other)
 
     # Punkty jako wektory 2D.
 
@@ -45,6 +45,7 @@ class Point:
         return Point(self.x * other.y, - self.y * other.x)
 
     # długość wektora
+    # używam round, aby znać liczbę cyfr po przecinku i móc odpowiednio przygotować testy
     def length(self):
         return round(math.sqrt(self.x**2 + self.y**2), 2)
 
