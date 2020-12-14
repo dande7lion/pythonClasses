@@ -48,5 +48,5 @@ if __name__ == "__main__":
     root.left.left = Node(15)
     root.right.right = Node(7)
     root.left.left.left = Node(48)
-    print(count_total(root))
-    print(count_leafs(root))
+    print(count_total(root))    # 77
+    print(count_leafs(root))    # 2
