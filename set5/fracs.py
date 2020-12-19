@@ -19,6 +19,10 @@ def convert_negative_to_positive(frac):
     if frac[0] < 0 and frac[1] < 0:
         frac[0] = abs(frac[0])
         frac[1] = abs(frac[1])
+    least_common_multiplier = fractions.gcd(frac[0], frac[1])
+    if least_common_multiplier is not 1:
+        frac[0] = frac[0] // least_common_multiplier
+        frac[1] = frac[1] // least_common_multiplier
     return frac
 
 # frac1 + frac2
@@ -47,8 +51,8 @@ def mul_frac(frac1, frac2):
 def div_frac(frac1, frac2):
     if not is_fraction_correct(frac2):
         raise Exception("Denominator can not be zero or numbers have to be integers!")
-    frac2[0], frac2[1] = frac2[1], frac2[0]
-    return mul_frac(frac1, frac2)
+    newSecondFrac = frac2[1], frac2[0]
+    return mul_frac(frac1, newSecondFrac)
 
 # bool, czy dodatni
 def is_positive(frac):
@@ -88,24 +92,24 @@ class TestFractions(unittest.TestCase):
 
     def test_add_frac(self):
         self.assertEqual(add_frac([3, 5], [4, 3]), [29, 15])
-        self.assertEqual(add_frac([17, 83], [54, 18]), [4788, 1494])
-        self.assertEqual(add_frac([3, -5], [4, -3]), [29, -15])
+        self.assertEqual(add_frac([17, 83], [54, 18]), [266, 83])
+        self.assertEqual(add_frac([3, -5], [4, -3]), [-29, 15])
         self.assertEqual(add_frac(self.zero, [4, -3]), [-4, 3])
         with self.assertRaises(Exception):
             add_frac([5, 0], [4, 8])
 
     def test_sub_frac(self):
         self.assertEqual(sub_frac([3, 5], [4, 3]), [-11, 15])
-        self.assertEqual(sub_frac([17, 83], [54, 18]), [-4176, 1494])
+        self.assertEqual(sub_frac([17, 83], [54, 18]), [-232, 83])
         self.assertEqual(sub_frac([3, -5], [4, -3]), [11, 15])
         self.assertEqual(sub_frac(self.zero, [4, -3]), [4, 3])
         with self.assertRaises(Exception):
             sub_frac([5, 0], [4, 8])
 
     def test_mul_frac(self):
-        self.assertEqual(mul_frac([3, 5], [4, 3]), [12, 15])
-        self.assertEqual(mul_frac([7, 18], [14, -3]), [98, -54])
-        self.assertEqual(mul_frac([-3, -5], [-4, -3]), [12, 15])
+        self.assertEqual(mul_frac([3, 5], [4, 3]), [4, 5])
+        self.assertEqual(mul_frac([7, 18], [14, -3]), [-49, 27])
+        self.assertEqual(mul_frac([-3, -5], [-4, -3]), [4, 5])
         self.assertEqual(mul_frac(self.zero, [-4, -3]), self.zero)
         with self.assertRaises(Exception):
             mul_frac([7, 0], [-4, 15])
@@ -114,7 +118,7 @@ class TestFractions(unittest.TestCase):
     def test_div_frac(self):
         self.assertEqual(div_frac([3, 5], [4, 3]), [9, 20])
         self.assertEqual(div_frac([-3, 5], [4, -3]), [9, 20])
-        self.assertEqual(div_frac([9, 15], [14, -3]), [-27, 210])
+        self.assertEqual(div_frac([9, 15], [14, -3]), [-9, 70])
         with self.assertRaises(Exception):
             div_frac([7, 4], [0, 15])
         with self.assertRaises(Exception):
