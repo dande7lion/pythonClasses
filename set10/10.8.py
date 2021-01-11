@@ -16,8 +16,8 @@ class RandomQueue:
         if self.is_empty(): 
             raise ValueError("Kolejka jest pusta. Nie można pobrać elementu.")
         self.number_of_elements -= 1
-        return random.choice(self.items)
-
+        return self.items.pop(random.randrange(self.number_of_elements))
+        
     def is_empty(self):
         return self.number_of_elements == 0
 
