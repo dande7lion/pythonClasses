@@ -19,14 +19,14 @@ def unique_random_numbers(n):
 
 # (b) różne liczby int od 0 do N-1 prawie posortowane (liczby są blisko swojej prawidłowej pozycji)
 
-def nearly_sorted_numbers(n):
+def unique_nearly_sorted_numbers(n):
     list_of_numbers = unique_random_numbers(n)
     list_of_numbers.sort()
     return swap_some_numbers(list_of_numbers)
 
 # (c) różne liczby int od 0 do N-1 prawie posortowane w odwrotnej kolejności
 
-def reverse_nearly_sorrted_numbers(n):
+def reverse_unique_nearly_sorrted_numbers(n):
     list_of_numbers = unique_random_numbers(n)
     list_of_numbers.sort(reverse=True)
     return swap_some_numbers(list_of_numbers)
@@ -47,7 +47,11 @@ def repeating_numbers(n, k):
     if n <= k:
         raise Exception("There will be no repeating numbers, because k is larger (or equal) than (to) n")
     for i in range(n):
-        list_of_numbers.append(random.randint(0, k))
+        list_of_numbers.append(random.randint(0, k-1))
     return list_of_numbers
 
-print(repeating_numbers(6, 5))
+print(unique_random_numbers(10))
+print(unique_nearly_sorted_numbers(10))
+print(reverse_unique_nearly_sorrted_numbers(10))
+print(gaussian_distribution(10))
+print(repeating_numbers(10, 2))
