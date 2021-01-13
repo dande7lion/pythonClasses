@@ -7,13 +7,7 @@ def moda_py(L, left, right):
     counter = dict()
     for element in range(left, right):
         counter[L[element]] = counter.get(L[element], 0) + 1
-    maxCount = 0
-    maxCountElement = 0
-    for i in counter:
-        if counter[i] > maxCount:
-            maxCount = counter[i]
-            maxCountElement = i
-    return maxCountElement
+    return max(counter, key=counter.get)
 
 
 L = [50, 8, 30, 54, 8, 50, 16, 65, 54, 50]
